@@ -2,42 +2,66 @@ package Nhanvien_object;
 
 import java.util.ArrayList;
 
-public class Developer extends Employee{
-    protected String teamName;
-    protected ArrayList <String> programmingLanguage = new ArrayList<> ();
-    protected int expYear;
+/**
+ * @author PSL3
+ *
+ */
+public class Developer extends Employee {
 
-    //constructor
-    public Developer(String teamName, int expYear, String empID, String empName, int baseSal) {
-        super(empID, empName, baseSal);
-        this.teamName = teamName;
-        this.expYear = expYear;
-        this.programmingLanguage = programmingLanguage;
-    }
+	private String teamName;
 
-    public String getTeamName() {
-        return teamName;
-    }
+	public String getTeamName() {
+		return teamName;
+	}
 
-    public ArrayList<String> getProgrammingLanguage() {
-        return programmingLanguage;
-    }
+	public void setTeamName(String teamName) {
+		this.teamName = teamName;
+	}
 
-    public int getExpYear() {
-        return expYear;
-    }
+	public ArrayList<String> getProgrammingLanguages() {
+		return programmingLanguages;
+	}
 
-    
-    @Override
-    public double getSalary() {
-        if (expYear >= 5) return baseSal + expYear * 2000000;
-        else if(expYear >= 3) return baseSal + expYear * 1000000;
-        else return baseSal;
-    }
+	public void setProgrammingLanguages(ArrayList<String> programmingLanguages) {
+		this.programmingLanguages = programmingLanguages;
+	}
 
-    @Override
-    public String toString() {
-        return  empID +"_"+baseSal+"_"+teamName+"_"+"["+programmingLanguage+"]_"+expYear;
-    }
-    
+	public int getExpYear() {
+		return expYear;
+	}
+
+	public void setExpYear(int expYear) {
+		this.expYear = expYear;
+	}
+
+	private ArrayList<String> programmingLanguages;
+	private int expYear;
+
+	public Developer(String empID, String empName, int baseSal, String teamName, ArrayList<String> programmingLanguages,
+			int expYear) {
+		super(empID, empName, baseSal);
+		this.teamName = teamName;
+		this.programmingLanguages = programmingLanguages;
+		this.expYear = expYear;
+	}
+
+	@Override
+	public double getSalary() {
+		if (getExpYear() >= 5) {
+			return getBaseSal() + getExpYear() * 2000000;
+		} else if (5 > getExpYear() && getExpYear() >= 3) {
+			return getBaseSal() + getExpYear() * 1000000;
+		} else {
+			return getBaseSal();
+		}
+
+	}
+
+	@Override
+	public String toString() {
+		return getEmpID() + "_" + getEmpName() + "_" + getBaseSal() + "_" + getTeamName() + "_"
+				+ getProgrammingLanguages() + "_" + getExpYear();
+	}
+
 }
+
